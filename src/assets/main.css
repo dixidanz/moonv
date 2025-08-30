@@ -1,0 +1,30 @@
+@import "tailwindcss";
+@plugin "@iconify/tailwind4";
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  --c-primary: #e76f51;
+  --c-primary-light: #f4a261;
+  --c-secondary: #264653;
+  
+  --c-default: #555;
+  --c-background-main: #ffffff;
+}
+
+.dark {
+  --c-default: #ccc;
+  --c-background-main: #1b1b1b;
+}
+
+@theme {
+  --color-primary: var(--c-primary);
+  --color-primary-light: var(--c-primary-light);
+  --color-secondary: var(--c-secondary);
+  --color-default: var(--c-default);
+}
+
+body {
+  background-color: var(--c-background-main);
+  color: var(--c-default);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
