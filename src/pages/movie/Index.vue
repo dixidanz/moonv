@@ -91,7 +91,7 @@ const openImdb = () => {
 
 onMounted(async () => {
   if (movieId.value) {
-    const result = await getMovieDetail(0)
+    const result = await getMovieDetail(movieId.value)
     if (result && 'id' in result) {
       movie.value = result
       loading.value = false

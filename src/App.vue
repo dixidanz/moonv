@@ -4,7 +4,7 @@
 <template>
   <div class="min-h-screen bg-background-main">
     <TheHeader />
-    <main>
+    <main class="min-h-[calc(100vh-64px-124px)]">
       <RouterView />
     </main>
     <TheFooter />
