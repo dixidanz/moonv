@@ -1,39 +1,15 @@
-# moovie
+# MoonV
 
-This template should help get you started developing with Vue 3 in Vite.
+Vue 3 + TypeScript + Tailwind CSS
 
-## Recommended IDE Setup
+### 功能
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+- **首頁推薦** - 熱門電影、評分最高電影、電影合集展示
+- **電影搜尋** - 快速搜尋任何電影
+- **電影分類** - 按類型瀏覽電影
+- **電影詳情** - 查看電影詳細信息、演員陣容、預告片
+- **深色模式** - 支持明暗主題切換
 
-## Type Support for `.vue` Imports in TS
-
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vite.dev/config/).
-
-## Project Setup
-
-```sh
-pnpm install
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
-pnpm dev
-```
-
-### Type-Check, Compile and Minify for Production
-
-```sh
-pnpm build
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-pnpm lint
-```
+### API
+Data provided by The Movie Database (TMDb)
+This product uses the TMDB API but is not endorsed or certified by TMDB.
