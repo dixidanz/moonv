@@ -56,6 +56,7 @@ onMounted(async () => {
               <Badge
                 v-for="genre of genres"
                 :key="genre.id"
+                can-click
                 :active="isGenreSelected(genre.id)"
                 @click="toggleGenre(genre.id)">
                 {{ genre.name }}

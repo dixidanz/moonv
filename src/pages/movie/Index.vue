@@ -207,7 +207,7 @@ onMounted(async () => {
       <h2 class="text-2xl md:text-3xl font-bold text-default mb-6">
         演員陣容
       </h2>
-      <div class="grid grid-cols-2 md:grid-cols-5 lg:grid-cols-10 gap-4">
+      <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-10 gap-4">
         <div
           v-for="actor of movie.casts.cast"
           :key="actor.id"
@@ -216,11 +216,10 @@ onMounted(async () => {
             <img
               :src="getImageUrl(actor.profile_path, 'w200')"
               :alt="actor.name"
-              class="w-full aspect-[3/4] object-cover rounded-lg shadow-xl group-hover:shadow-lg transition-shadow duration-200"
+              class="w-full aspect-[3/4] object-cover rounded-lg shadow-xl"
               @error="(e) => {
                 (e.target as HTMLImageElement).src = placeholderProfile
               }" />
-            <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-200 rounded-lg"></div>
           </div>
           <h4 class="font-medium text-default text-sm mb-1">
             {{ actor.original_name }}
