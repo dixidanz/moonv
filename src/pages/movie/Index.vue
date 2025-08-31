@@ -186,14 +186,14 @@ onMounted(async () => {
               v-if="hasYouTubeTrailer"
               class="py-2 px-4 bg-[#FF0233] text-white font-bold rounded-md hover:opacity-90 flex items-center text-lg group"
               @click="openYouTubeTrailer">
-              觀看預告片
+              預告片
               <span class="icon-[carbon--arrow-up-right] ml-1 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-500"></span>
             </button>
             <button
               v-if="hasImdbId"
               class="py-2 px-4 bg-[#FEC400] text-black font-bold rounded-md hover:opacity-90 flex items-center text-lg group"
               @click="openImdb">
-              查看 IMDb
+              IMDb
               <span class="icon-[carbon--arrow-up-right] ml-1 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-500"></span>
             </button>
           </div>

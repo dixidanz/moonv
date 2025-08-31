@@ -3,9 +3,13 @@ import type { TimeWindow } from '@/types'
 import { useMovieStore } from '@/stores/movie'
 
 const movieStore = useMovieStore()
-const { movieTrending, isLoadingTrending } = storeToRefs(movieStore)
+const { movieTrendingDay, movieTrendingWeek, isLoadingTrending } = storeToRefs(movieStore)
 
 const activeTab = ref<TimeWindow>('day')
+const movieTrending = computed(() => {
+  return activeTab.value === 'day' ? movieTrendingDay.value : movieTrendingWeek.value
+})
+
 const scrollContainer = ref<HTMLElement>()
 
 const switchTab = async (timeWindow: TimeWindow) => {
@@ -25,7 +29,7 @@ onMounted(async () => {
 
 <template>
   <section class="w-full container mx-auto px-2 py-8">
-    <div class="flex items-center justify-between mb-2 space-y-6">
+    <div class="flex items-center justify-between mb-2">
       <SectionTitle title="熱門電影" />
       <div class="flex bg-white/10 rounded-full p-1 border dark:border-white/20 border-black/20">
         <button
@@ -53,7 +57,7 @@ onMounted(async () => {
 
     <div
       ref="scrollContainer"
-      class="overflow-x-auto overflow-y-hidden py-2 movie_container">
+      class="overflow-x-auto overflow-y-hidden py-2 movie_container mt-6">
       <div class="flex gap-4">
         <template v-if="isLoadingTrending">
           <PosterCard

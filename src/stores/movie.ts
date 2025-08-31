@@ -11,11 +11,15 @@ export const useMovieStore = defineStore('movie', () => {
     isLoadingPopular.value = false
   }
 
-  const { isLoading: isLoadingTrending, movies: movieTrending } = useMovieListTemplate()
+  const { isLoading: isLoadingTrending, movies: movieTrendingDay } = useMovieListTemplate()
+  const { movies: movieTrendingWeek } = useMovieListTemplate()
   const loadMovieTrending = async (timeWindow: TimeWindow = 'day') => {
-    if (movieTrending.value?.results?.length) return
+    if (timeWindow === 'day' && movieTrendingDay.value?.results?.length) return
+    if (timeWindow === 'week' && movieTrendingWeek.value?.results?.length) return
     isLoadingTrending.value = true
-    movieTrending.value = await getMovieTrending(timeWindow)
+    const res = await getMovieTrending(timeWindow)
+    if (timeWindow === 'day') movieTrendingDay.value = res
+    else if (timeWindow === 'week') movieTrendingWeek.value = res
     isLoadingTrending.value = false
   }
 
@@ -27,7 +31,8 @@ export const useMovieStore = defineStore('movie', () => {
     isLoadingPopular,
     loadMoviePopular,
 
-    movieTrending,
+    movieTrendingDay,
+    movieTrendingWeek,
     isLoadingTrending,
     loadMovieTrending,
 
