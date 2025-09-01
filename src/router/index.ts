@@ -14,9 +14,9 @@ const router = createRouter({
       component: () => import('@/pages/search/Index.vue')
     },
     {
-      path: '/movies',
-      name: 'movies',
-      component: () => import('@/pages/movies/Index.vue')
+      path: '/discover',
+      name: 'discover',
+      component: () => import('@/pages/discover/Index.vue')
     },
     {
       path: '/movie/:id',

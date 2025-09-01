@@ -21,7 +21,7 @@ const handleToggleTheme = () => {
       </RouterLink>
       <div class="flex items-center gap-6">
         <RouterLink
-          to="/movies"
+          to="/discover"
           class="text-lg font-semibold text-default hover:text-accent transition-colors duration-200">
           探索
         </RouterLink>
