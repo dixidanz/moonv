@@ -1,6 +1,11 @@
 <script setup lang="ts">
 import SectionTitle from '@/components/SectionTitle.vue'
 import MovieList from '@/components/MovieList.vue'
+import { pageNameMap } from '@/router'
+
+defineOptions({
+  name: pageNameMap['now-playing']
+})
 
 const { data, loading, hasMore, loadMore, reload } = useLoadMore(getNowPlaying)
 

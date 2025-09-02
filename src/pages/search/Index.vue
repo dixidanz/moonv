@@ -1,4 +1,10 @@
 <script setup lang="ts">
+import { pageNameMap } from '@/router'
+
+defineOptions({
+  name: pageNameMap.search
+})
+
 const searchQuery = ref('')
 const hasSearched = ref(false)
 const currentQuery = ref('')

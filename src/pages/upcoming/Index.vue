@@ -2,6 +2,11 @@
 import SectionTitle from '@/components/SectionTitle.vue'
 import MovieList from '@/components/MovieList.vue'
 import { getUpcoming } from '@/api/movie'
+import { pageNameMap } from '@/router'
+
+defineOptions({
+  name: pageNameMap.upcoming
+})
 
 const { data, loading, hasMore, loadMore, reload } = useLoadMore(getUpcoming)
 

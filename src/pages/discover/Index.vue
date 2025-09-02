@@ -1,6 +1,11 @@
 <script setup lang="ts">
 import type { MovieDiscoverQuery } from '@/types'
 import { genres } from '@/api/genre'
+import { pageNameMap } from '@/router'
+
+defineOptions({
+  name: pageNameMap.discover
+})
 
 const selectedGenres = ref<number[]>([])
 
