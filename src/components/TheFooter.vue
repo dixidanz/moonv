@@ -1,8 +1,8 @@
 <template>
-  <footer class="w-full shadow-xl bg-secondary dark:shadow-primary/10 mt-auto">
+  <footer class="w-full shadow-xl bg-secondary dark:shadow-primary/10 mt-auto text-gray-300">
     <div class="px-6 py-8 text-center">
       <div class="flex items-center justify-center gap-2 mb-4">
-        <span class="text-default">Data provided by</span>
+        <span>Data provided by</span>
         <a
           href="https://www.themoviedb.org"
           target="_blank"
@@ -14,7 +14,7 @@
             class="h-4" />
         </a>
       </div>
-      <p class="text-sm text-muted">
+      <p class="text-sm">
         This product uses the TMDB API but is not endorsed or certified by TMDB.
       </p>
     </div>

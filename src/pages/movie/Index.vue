@@ -2,6 +2,7 @@
 import type { MovieDetail, VideoItem } from '@/types'
 import { getImageUrl } from '@/api/movie'
 import placeholderProfile from '@/assets/images/placeholder-profile.png'
+import placeholderPoster from '@/assets/images/placeholder-poster.png'
 import LoadingSpinner from '@/components/LoadingSpinner.vue'
 
 const route = useRoute()
@@ -113,7 +114,10 @@ onMounted(async () => {
           <img
             :src="getImageUrl(movie.poster_path || '', 'w500')"
             :alt="movie.title"
-            class="w-full max-w-sm lg:max-w-full  rounded-xl shadow-lg" />
+            class="w-full max-w-sm lg:max-w-full  rounded-xl shadow-lg"
+            @error="(e) => {
+              (e.target as HTMLImageElement).src = placeholderPoster
+            }" />
         </div>
 
         <div class="lg:w-3/5 space-y-6 px-4">
@@ -203,10 +207,8 @@ onMounted(async () => {
 
     <div
       v-if="movie.casts?.cast?.length > 0"
-      class="mt-12">
-      <h2 class="text-2xl md:text-3xl font-bold text-default mb-6">
-        演員陣容
-      </h2>
+      class="mt-12 space-y-6">
+      <SectionTitle title="演員陣容" />
       <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-10 gap-4">
         <div
           v-for="actor of movie.casts.cast"

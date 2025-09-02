@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { Collection } from '@/types'
 import { getImageUrl } from '@/api/movie'
+import placeholderPoster from '@/assets/images/placeholder-poster.png'
 
 const router = useRouter()
 
@@ -54,7 +55,6 @@ const collectionParts = computed(() => {
         class="absolute inset-0">
         <img
           :src="getImageUrl(collection.backdrop_path, 'w780')"
-          :alt="collection.name"
           class="w-full h-full object-cover opacity-30" />
         <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/60 to-black/40"></div>
       </div>
@@ -64,7 +64,10 @@ const collectionParts = computed(() => {
           <img
             :src="getImageUrl(collection.poster_path || '', 'w500')"
             :alt="collection.name"
-            class="w-full max-w-sm rounded-xl shadow-lg" />
+            class="w-full max-w-sm rounded-xl shadow-lg"
+            @error="(e) => {
+              (e.target as HTMLImageElement).src = placeholderPoster
+            }" />
         </div>
 
         <div class="lg:w-3/5 space-y-6 px-4 flex flex-col justify-center items-start">

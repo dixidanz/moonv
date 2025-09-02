@@ -40,7 +40,7 @@ const handleKeyPress = (event: KeyboardEvent) => {
 </script>
 
 <template>
-  <div class="bg-main text-default min-h-screen p-6">
+  <div class="bg-main text-default p-6">
     <div class="max-w-6xl mx-auto">
       <div class="mb-8">
         <div class="flex gap-4 max-w-2xl mx-auto">

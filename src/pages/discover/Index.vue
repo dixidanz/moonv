@@ -49,7 +49,7 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div class="bg-main text-default min-h-screen">
+  <div class="container mx-auto bg-main text-default">
     <div class="max-w-7xl mx-auto p-6">
       <div class="mb-8">
         <div class="rounded-xl p-6 shadow-lg dark:shadow-black/50">
