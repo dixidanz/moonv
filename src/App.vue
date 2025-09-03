@@ -4,7 +4,7 @@ const { keepAlivePages } = storeToRefs(keepAliveStore)
 </script>
 
 <template>
-  <div class="min-h-screen bg-background-main">
+  <div class="min-h-screen">
     <TheHeader />
     <main class="min-h-[calc(100vh-64px-124px)]">
       <RouterView v-slot="{ Component, route }">

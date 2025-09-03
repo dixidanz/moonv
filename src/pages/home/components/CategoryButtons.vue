@@ -3,7 +3,7 @@ import Card from './Card.vue'
 </script>
 
 <template>
-  <div class="relative overflow-hidden bg-background-main py-5 sm:py-10">
+  <div class="relative overflow-hidden py-5 sm:py-10">
     <div class="relative z-10 container mx-auto px-4 py-4">
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 justify-items-center items-center max-w-4xl mx-auto">
         <RouterLink

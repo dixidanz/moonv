@@ -26,7 +26,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="relative overflow-hidden bg-background-main py-4 container mx-auto px-2 space-y-6">
+  <div class="relative overflow-hidden py-4 container mx-auto px-2 space-y-6">
     <SectionTitle
       v-if="collections.length"
       title="系列電影" />

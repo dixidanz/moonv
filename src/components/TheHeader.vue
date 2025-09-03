@@ -9,7 +9,7 @@ const handleToggleTheme = () => {
 </script>
 
 <template>
-  <header class="w-full shadow-xl bg-[var(--c-background-main)] dark:shadow-primary/10">
+  <header class="w-full shadow-xl dark:shadow-primary/10 ">
     <div class="flex items-center justify-between px-6">
       <RouterLink
         to="/"

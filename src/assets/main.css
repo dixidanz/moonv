@@ -26,7 +26,7 @@
 body {
   background-color: var(--c-background-main);
   color: var(--c-default);
-  transition: background-color 0.3s ease, color 0.3s ease;
+  transition: background-color 0.5s ease, color 0.5s ease;
 }
 
 .btn_gradient_primary {

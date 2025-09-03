@@ -9,7 +9,8 @@ export const useThemeStore = defineStore('theme', () => {
     selector: 'html',
     attribute: 'class',
     valueDark: 'dark',
-    valueLight: ''
+    valueLight: '',
+    disableTransition: false
   })
 
   watchEffect(() => {
