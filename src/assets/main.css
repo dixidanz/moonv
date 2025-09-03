@@ -28,3 +28,7 @@ body {
   color: var(--c-default);
   transition: background-color 0.3s ease, color 0.3s ease;
 }
+
+.btn_gradient_primary {
+  @apply backdrop-blur-md border shadow-lg transition-all duration-200 hover:scale-110 active:scale-95 bg-gradient-to-r from-primary to-primary-light border-primary text-white shadow-primary/30 dark:bg-primary/80 dark:hover:bg-primary dark:border-primary/60 dark:shadow-primary/20;
+}

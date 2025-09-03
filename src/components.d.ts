@@ -8,6 +8,7 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
+    BackToTop: typeof import('./components/BackToTop.vue')['default']
     Badge: typeof import('./components/Badge.vue')['default']
     Banner: typeof import('./components/Banner.vue')['default']
     LoadingSpinner: typeof import('./components/LoadingSpinner.vue')['default']

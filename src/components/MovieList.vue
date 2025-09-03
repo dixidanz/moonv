@@ -33,7 +33,7 @@ defineEmits<{
       class="flex justify-center mt-8">
       <button
         :disabled="loading"
-        class="px-6 py-3 bg-gradient-to-r from-primary to-primary-light text-white font-semibold rounded-full hover:shadow-lg transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed hover:scale-105 cursor-pointer"
+        class="btn_gradient_primary px-6 py-3 font-semibold rounded-full disabled:cursor-not-allowed cursor-pointer"
         @click="$emit('load')">
         <span v-if="!loading">載入更多</span>
         <span v-else>載入中...</span>

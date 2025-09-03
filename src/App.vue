@@ -16,5 +16,6 @@ const { keepAlivePages } = storeToRefs(keepAliveStore)
       </RouterView>
     </main>
     <TheFooter />
+    <BackToTop />
   </div>
 </template>

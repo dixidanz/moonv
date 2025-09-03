@@ -38,7 +38,7 @@ const handleToggleTheme = () => {
         <div>
           <RouterLink
             to="/search"
-            class="flex items-center gap-1 bg-gradient-to-r from-primary to-primary-light text-white px-4 py-2 rounded-full shadow-md hover:opacity-80 transition-opacity duration-200 min-w-22">
+            class="btn_gradient_primary flex items-center gap-1 px-4 py-2 rounded-full min-w-22">
             <span class="icon-[carbon--search]"></span>
             搜尋
           </RouterLink>
