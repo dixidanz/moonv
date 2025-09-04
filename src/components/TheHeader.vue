@@ -28,12 +28,16 @@ const handleToggleTheme = () => {
         <button
           class="rounded-lgs duration-200 flex items-center"
           @click="handleToggleTheme">
-          <span
-            v-if="themeStore.isDarkMode"
-            class="icon-[carbon--sun] text-yellow-500 text-xl"></span>
-          <span
-            v-else
-            class="icon-[carbon--moon] text-gray-700 text-xl"></span>
+          <Transition
+            name="sunset"
+            mode="out-in">
+            <span
+              v-if="themeStore.isDarkMode"
+              class="icon-[carbon--sun] text-primary text-xl"></span>
+            <span
+              v-else
+              class="icon-[carbon--moon] text-gray-700 text-xl"></span>
+          </transition>
         </button>
         <div>
           <RouterLink
@@ -47,3 +51,26 @@ const handleToggleTheme = () => {
     </div>
   </header>
 </template>
+
+<style scoped>
+.sunset-enter-active {
+  transition: transform 0.3s ease-out;
+}
+
+.sunset-leave-active {
+  transition: transform 0.3s ease-in;
+}
+
+.sunset-enter-from {
+  transform: translateY(-50px);
+}
+
+.sunset-enter-to,
+.sunset-leave-from {
+  transform: translateY(0);
+}
+
+.sunset-leave-to {
+  transform: translateY(50px);
+}
+</style>
