@@ -219,6 +219,7 @@ declare global {
   const useLink: typeof import('vue-router')['useLink']
   const useLoadMore: typeof import('./composables/useLoadMore')['useLoadMore']
   const useLocalStorage: typeof import('@vueuse/core')['useLocalStorage']
+  const useLocaleReload: typeof import('./composables/useLocaleReload')['useLocaleReload']
   const useMagicKeys: typeof import('@vueuse/core')['useMagicKeys']
   const useManualRefHistory: typeof import('@vueuse/core')['useManualRefHistory']
   const useMediaControls: typeof import('@vueuse/core')['useMediaControls']

@@ -1,9 +1,12 @@
 import type { MovieDetail, MovieList, TimeWindow, Collection, NotFound, MovieDiscoverQuery } from '@/types'
 import request from '@/utils/request'
 
-const query = {
-  language: 'zh-TW',
-  region: 'TW'
+const getQuery = () => {
+  const locale = localStorage.getItem('moonv-locale')
+  return {
+    language: locale,
+    region: 'TW'
+  }
 }
 
 export const getImageUrl = (path: string, size: 'w200' | 'w300' | 'w400' | 'w500' | 'w780' | 'w1280' | 'original' = 'w500'): string => {
@@ -13,7 +16,7 @@ export const getImageUrl = (path: string, size: 'w200' | 'w300' | 'w400' | 'w500
 
 export const getMoviePopular = async (page = 1): Promise<MovieList> => {
   try {
-    return await request.get('/movie/popular', { params: { ...query, page } })
+    return await request.get('/movie/popular', { params: { ...getQuery(), page } })
   } catch (error) {
     return {
       page: 1,
@@ -26,7 +29,7 @@ export const getMoviePopular = async (page = 1): Promise<MovieList> => {
 
 export const getMovieTrending = async (timeWindow: TimeWindow = 'day'): Promise<MovieList> => {
   try {
-    return await request.get(`/trending/movie/${timeWindow}`, { params: { ...query } })
+    return await request.get(`/trending/movie/${timeWindow}`, { params: { ...getQuery() } })
   } catch (error) {
     return {
       page: 1,
@@ -39,7 +42,7 @@ export const getMovieTrending = async (timeWindow: TimeWindow = 'day'): Promise<
 
 export const getMovieTopRate = async (page = 1): Promise<MovieList> => {
   try {
-    return await request.get('/movie/top_rated', { params: { ...query, page } })
+    return await request.get('/movie/top_rated', { params: { ...getQuery(), page } })
   } catch (error) {
     return {
       page: 1,
@@ -52,7 +55,7 @@ export const getMovieTopRate = async (page = 1): Promise<MovieList> => {
 
 export const getMovieDetail = async (movieId: number): Promise<MovieDetail | NotFound> => {
   try {
-    return await request.get(`/movie/${movieId}`, { params: { ...query, append_to_response: 'videos,casts' } })
+    return await request.get(`/movie/${movieId}`, { params: { ...getQuery(), append_to_response: 'videos,casts' } })
   } catch (error) {
     return {
       status_code: 34,
@@ -64,7 +67,7 @@ export const getMovieDetail = async (movieId: number): Promise<MovieDetail | Not
 
 export const getNowPlaying = async (page = 1): Promise<MovieList> => {
   try {
-    return await request.get('/movie/now_playing', { params: { ...query, page } })
+    return await request.get('/movie/now_playing', { params: { ...getQuery(), page } })
   } catch (error) {
     return {
       page: 1,
@@ -77,7 +80,7 @@ export const getNowPlaying = async (page = 1): Promise<MovieList> => {
 
 export const getUpcoming = async (page = 1): Promise<MovieList> => {
   try {
-    return await request.get('/movie/upcoming', { params: { ...query, page } })
+    return await request.get('/movie/upcoming', { params: { ...getQuery(), page } })
   } catch (error) {
     return {
       page: 1,
@@ -90,7 +93,7 @@ export const getUpcoming = async (page = 1): Promise<MovieList> => {
 
 export const getCollection = async (collectionId: number): Promise<Collection | NotFound> => {
   try {
-    return await request.get(`/collection/${collectionId}`, { params: { ...query } })
+    return await request.get(`/collection/${collectionId}`, { params: { ...getQuery() } })
   } catch (error) {
     return {
       status_code: 34,
@@ -104,7 +107,7 @@ export const searchMovie = async (queryString: string, page = 1): Promise<MovieL
   try {
     return await request.get('/search/movie', {
       params: {
-        ...query,
+        ...getQuery(),
         query: queryString,
         page
       }
@@ -122,7 +125,7 @@ export const searchMovie = async (queryString: string, page = 1): Promise<MovieL
 export const getMovieDiscover = async (page = 1, queryString?: MovieDiscoverQuery): Promise<MovieList> => {
   try {
     return await request.get('/discover/movie', {
-      params: { ...query, page, ...queryString }
+      params: { ...getQuery(), page, ...queryString }
     })
   } catch (error) {
     return {

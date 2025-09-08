@@ -14,6 +14,10 @@ const movies = computed(() => data.value.results)
 onMounted(() => {
   reload()
 })
+
+useLocaleReload(() => {
+  reload()
+})
 </script>
 
 <template>

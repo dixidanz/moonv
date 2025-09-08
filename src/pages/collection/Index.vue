@@ -21,8 +21,9 @@ const collectionId = computed(() => {
   return typeof id === 'string' ? parseInt(id) : 0
 })
 
-onMounted(async () => {
+const loadCollection = async () => {
   if (collectionId.value) {
+    loading.value = true
     const result = await getCollection(collectionId.value)
     if (result && 'id' in result) {
       collection.value = result
@@ -31,6 +32,14 @@ onMounted(async () => {
       router.push({ name: 'NotFound' })
     }
   }
+}
+
+onMounted(async () => {
+  await loadCollection()
+})
+
+useLocaleReload(async () => {
+  await loadCollection()
 })
 
 const collectionParts = computed(() => {

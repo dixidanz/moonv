@@ -37,6 +37,12 @@ const handleKeyPress = (event: KeyboardEvent) => {
     handleSearch()
   }
 }
+
+useLocaleReload(async () => {
+  if (currentQuery.value) {
+    await search(currentQuery.value)
+  }
+})
 </script>
 
 <template>

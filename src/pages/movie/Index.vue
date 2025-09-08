@@ -84,8 +84,9 @@ const openImdb = () => {
   }
 }
 
-onMounted(async () => {
+const loadMovieDetail = async () => {
   if (movieId.value) {
+    loading.value = true
     const result = await getMovieDetail(movieId.value)
     if (result && 'id' in result) {
       movie.value = result
@@ -94,6 +95,14 @@ onMounted(async () => {
       router.push({ name: 'NotFound' })
     }
   }
+}
+
+onMounted(async () => {
+  await loadMovieDetail()
+})
+
+useLocaleReload(async () => {
+  await loadMovieDetail()
 })
 </script>
 

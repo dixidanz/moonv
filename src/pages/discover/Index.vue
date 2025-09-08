@@ -46,6 +46,10 @@ watch(currentFilters, async () => {
 onMounted(async () => {
   await reload(currentFilters.value)
 })
+
+useLocaleReload(async () => {
+  await reload(currentFilters.value)
+})
 </script>
 
 <template>

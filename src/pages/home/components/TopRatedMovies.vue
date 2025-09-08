@@ -9,6 +9,10 @@ onMounted(async () => {
     await movieStore.reloadTopRated()
   }
 })
+
+useLocaleReload(async () => {
+  await movieStore.reloadTopRated()
+})
 </script>
 
 <template>

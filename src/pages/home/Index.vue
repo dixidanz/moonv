@@ -14,6 +14,10 @@ const { moviePopular, isLoadingPopular } = storeToRefs(movieStore)
 onMounted(() => {
   movieStore.loadMoviePopular()
 })
+
+useLocaleReload(() => {
+  movieStore.loadMoviePopular()
+})
 </script>
 
 <template>

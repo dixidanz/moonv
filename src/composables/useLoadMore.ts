@@ -43,6 +43,15 @@ export function useLoadMore<T = any>(
     await fetch(1, ...args)
   }
 
+  const initData = () => {
+    data.value = {
+      page: 0,
+      results: [],
+      total_pages: 0,
+      total_results: 0
+    }
+  }
+
   const hasMore = computed(() => {
     return data.value.page < data.value.total_pages
   })
@@ -53,6 +62,7 @@ export function useLoadMore<T = any>(
     hasMore,
     fetch,
     loadMore,
-    reload
+    reload,
+    initData
   }
 }

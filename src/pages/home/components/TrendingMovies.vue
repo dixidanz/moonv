@@ -55,6 +55,10 @@ onMounted(async () => {
   await switchTab('day')
 })
 
+useLocaleReload(async () => {
+  await switchTab(activeTab.value)
+})
+
 onActivated(() => {
   if (isLoadingTrending.value || !movieTrending.value?.results?.length) return
   nextTick(() => {

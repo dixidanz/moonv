@@ -5,9 +5,9 @@ import placeholderPoster from '@/assets/images/placeholder-poster.png'
 
 const collections = ref<Collection[]>([])
 const isLoadingCollections = ref(false)
+const randomIds = collectionsId.sort(() => 0.5 - Math.random()).slice(0, 4)
 const loadRandomCollections = async () => {
   isLoadingCollections.value = true
-  const randomIds = collectionsId.sort(() => 0.5 - Math.random()).slice(0, 4)
 
   try {
     const promises = randomIds.map(id => getCollection(id))
@@ -20,8 +20,12 @@ const loadRandomCollections = async () => {
   isLoadingCollections.value = false
 }
 
-onMounted(() => {
-  loadRandomCollections()
+onMounted(async () => {
+  await loadRandomCollections()
+})
+
+useLocaleReload(async () => {
+  await loadRandomCollections()
 })
 </script>
 
@@ -29,7 +33,7 @@ onMounted(() => {
   <div class="relative overflow-hidden py-4 container mx-auto px-2 space-y-6 mb-4">
     <SectionTitle
       v-if="collections.length"
-      :title="$t('title.collectionMovie')" />
+      :title="$t('title.collection')" />
 
     <div class="relative z-10 container mx-auto px-4 py-4">
       <div
