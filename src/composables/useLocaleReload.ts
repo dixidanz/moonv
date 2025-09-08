@@ -6,6 +6,8 @@ export function useLocaleReload(reloadFn?: () => void | Promise<void>) {
 
     const movieStore = useMovieStore()
     movieStore.clearCache()
+    const genreStore = useGenreStore()
+    genreStore.clearCache()
 
     if (reloadFn) {
       await reloadFn()

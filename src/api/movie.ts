@@ -1,4 +1,4 @@
-import type { MovieDetail, MovieList, TimeWindow, Collection, NotFound, MovieDiscoverQuery } from '@/types'
+import type { MovieDetail, MovieList, TimeWindow, Collection, NotFound, MovieDiscoverQuery, Genre } from '@/types'
 import request from '@/utils/request'
 
 const getQuery = () => {
@@ -134,5 +134,14 @@ export const getMovieDiscover = async (page = 1, queryString?: MovieDiscoverQuer
       total_pages: 1,
       total_results: 0
     }
+  }
+}
+export const getMovieGenre = async (): Promise<Record<'genres', Genre[]>> => {
+  try {
+    return await request.get('/genre/movie/list', {
+      params: { ...getQuery() }
+    })
+  } catch (error) {
+    return { genres: [] }
   }
 }

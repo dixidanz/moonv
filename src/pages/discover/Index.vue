@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import type { MovieDiscoverQuery } from '@/types'
-import { genres } from '@/api/genre'
 import { pageNameMap } from '@/router'
 
 defineOptions({
@@ -43,11 +42,16 @@ watch(currentFilters, async () => {
   await reload(currentFilters.value)
 })
 
+const genreStore = useGenreStore()
+const { genres } = storeToRefs(genreStore)
+
 onMounted(async () => {
+  await genreStore.loadMovieGenre()
   await reload(currentFilters.value)
 })
 
 useLocaleReload(async () => {
+  await genreStore.loadMovieGenre()
   await reload(currentFilters.value)
 })
 </script>

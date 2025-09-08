@@ -4,6 +4,7 @@ import { getImageUrl } from '@/api/movie'
 import placeholderProfile from '@/assets/images/placeholder-profile.png'
 import placeholderPoster from '@/assets/images/placeholder-poster.png'
 import LoadingSpinner from '@/components/LoadingSpinner.vue'
+import { formatGenres } from '@/utils'
 
 const route = useRoute()
 const router = useRouter()
@@ -139,9 +140,7 @@ useLocaleReload(async () => {
           </Badge>
 
           <div class="grid grid-cols-1 md:grid-cols-2 space-y-6 md:space-y-0">
-            <div
-              v-if="movie.genres.length > 0"
-              class="space-y-2">
+            <div class="space-y-2">
               <h3 class="text-2xl font-semibold text-default/60">
                 {{ $t('movie.releaseDate') }}
               </h3>
@@ -150,9 +149,7 @@ useLocaleReload(async () => {
               </p>
             </div>
 
-            <div
-              v-if="movie.genres.length > 0"
-              class="space-y-2">
+            <div class="space-y-2">
               <h3 class="text-2xl font-semibold text-default/60">
                 {{ $t('movie.runtime') }}
               </h3>
@@ -172,7 +169,7 @@ useLocaleReload(async () => {
               <Badge
                 v-for="genre of movie.genres"
                 :key="genre.id">
-                {{ genre.name }}
+                {{ formatGenres[genre.name] || genre.name }}
               </Badge>
             </div>
           </div>
