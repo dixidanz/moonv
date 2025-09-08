@@ -4,6 +4,8 @@ import { register } from 'swiper/element'
 import { Pagination, Autoplay } from 'swiper/modules'
 import { getImageUrl } from '@/api/movie'
 import { formatReleaseYear } from '@/utils'
+import PaginationStyle from 'swiper/element/css/pagination?url'
+import AutoplayStyle from 'swiper/element/css/autoplay?url'
 
 const props = defineProps<{
   list: MovieList['results']
@@ -14,10 +16,14 @@ register()
 
 const params = {
   modules: [Pagination, Autoplay],
-  injectStylesUrls: [
-    'swiper/pagination-element.min.css',
-    'swiper/autoplay-element.min.css'
-  ]
+  injectStylesUrls: [PaginationStyle, AutoplayStyle],
+  autoplay: {
+    delay: 5000,
+    disableOnInteraction: false
+  },
+  pagination: {
+    clickable: true
+  }
 }
 
 const initializeSwiper = () => {
@@ -57,16 +63,11 @@ onMounted(() => {
   <swiper-container
     v-else
     :init="false"
-    :loop="list.length >= 3 ? true : false"
-    :autoplay="{
-      delay: 5000,
-      disableOnInteraction: false
-    }"
-    pagination-clickable="true"
     class="overflow-hidden shadow-2xl">
     <swiper-slide
       v-for="item of list"
-      :key="item.id">
+      :key="item.id"
+      :loop="list.length >= 3">
       <div class="relative overflow-hidden">
         <img
           :src="getImageUrl(item.backdrop_path || '', 'w780')"
@@ -119,5 +120,16 @@ onMounted(() => {
 
 .movie_title {
   text-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+}
+
+swiper-container {
+  --swiper-pagination-bullet-border-radius: 20px;
+  --swiper-pagination-bullet-inactive-color: var(--c-primary-light);
+}
+
+swiper-container::part(bullet-active) {
+  background-color: var(--c-primary);
+  width: 20px;
+  transition: width 0.3s, background 0.3s;
 }
 </style>
