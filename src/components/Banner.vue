@@ -101,7 +101,7 @@ onMounted(() => {
                 :to="{ name: 'movie', params: { id: item.id } }"
                 class="btn-shadow flex items-center justify-center gap-3 px-6 py-3 bg-white/20 backdrop-blur-md border-2 border-primary text-white font-semibold rounded-full transition-all duration-300 hover:bg-white/30 hover:scale-105">
                 <span class="icon-[carbon--information] text-xl"></span>
-                更多資訊
+                {{ $t('common.moreInfo') }}
               </RouterLink>
             </div>
           </div>

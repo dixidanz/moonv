@@ -76,14 +76,14 @@ const collectionParts = computed(() => {
           </h1>
 
           <Badge>
-            <span class="font-bold text-white">{{ collection.parts?.length ?? 0 }} 部電影</span>
+            <span class="font-bold text-white">{{ $t('movie.countMovie', collection.parts?.length ?? 0) }}</span>
           </Badge>
 
           <div
             v-if="collection.overview"
             class="space-y-2">
             <h3 class="text-2xl font-semibold text-white/80">
-              簡介
+              {{ $t('movie.overview') }}
             </h3>
             <p class="text-white text-xl leading-relaxed">
               {{ collection.overview }}
@@ -96,7 +96,7 @@ const collectionParts = computed(() => {
     <div
       v-if="collection.parts.length > 0"
       class="mt-12 space-y-6">
-      <SectionTitle title="系列電影" />
+      <SectionTitle :title="$t('title.collection')" />
       <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
         <template v-if="loading">
           <PosterCard

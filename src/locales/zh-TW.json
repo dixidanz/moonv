@@ -5,11 +5,15 @@
   },
   "common": {
     "loadmore": "載入更多",
-    "loading": "載入中..."
+    "loading": "載入中...",
+    "moreInfo": "更多資訊",
+    "typeMovieName": "輸入電影名稱",
+    "search": "搜尋",
+    "searching": "搜尋中..."
   },
   "title": {
-    "trendingMovie": "熱門電影",
-    "collectionMovie": "系列電影",
+    "trending": "熱門電影",
+    "collection": "系列電影",
     "topRated": "最高評分",
     "casts": "演員陣容",
     "upcoming": "即將上映",
@@ -20,7 +24,8 @@
     "week": "本週熱門"
   },
   "discover": {
-    "genres": "類型"
+    "genres": "類型",
+    "noResults": "找不到符合條件的電影"
   },
   "movie": {
     "overview": "劇情簡介",
@@ -28,6 +33,10 @@
     "runtime": "片長",
     "genres": "類型",
     "cast": "演員",
-    "countMovie": "{count} 部電影"
+    "countMovie": "{count} 部電影",
+    "unknown": "未知",
+    "hours": "小時",
+    "minutes": "分鐘",
+    "trailer": "預告片"
   }
 }

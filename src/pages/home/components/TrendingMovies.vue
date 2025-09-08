@@ -73,7 +73,7 @@ watch(() => isLoadingTrending.value, loading => {
 <template>
   <section class="w-full container mx-auto px-2 py-8">
     <div class="flex items-center justify-between mb-2 @container">
-      <SectionTitle title="熱門電影" />
+      <SectionTitle :title="$t('title.trending')" />
       <div class="flex bg-white/10 rounded-full p-1 border dark:border-white/20 border-black/20 text-sm @md:text-base">
         <button
           class="px-2 @md:px-6 py-2 rounded-full font-semibold transition-color duration-300"
@@ -83,7 +83,7 @@ watch(() => isLoadingTrending.value, loading => {
               : 'text-default/70 hover:text-default'
           ]"
           @click="switchTab('day')">
-          本日熱門
+          {{ $t('trending.day') }}
         </button>
         <button
           class="px-2 @md:px-6 py-2 rounded-full font-semibold transition-color duration-300"
@@ -93,7 +93,7 @@ watch(() => isLoadingTrending.value, loading => {
               : 'text-default/70 hover:text-default'
           ]"
           @click="switchTab('week')">
-          本週熱門
+          {{ $t('trending.week') }}
         </button>
       </div>
     </div>
@@ -113,9 +113,7 @@ watch(() => isLoadingTrending.value, loading => {
       </template>
 
       <template v-else>
-        <swiper-container
-          :init="false"
-          class="py-2">
+        <swiper-container :init="false">
           <swiper-slide
             v-for="(movie, index) of movieTrending.results"
             :key="movie.id"

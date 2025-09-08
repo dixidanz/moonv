@@ -5,13 +5,17 @@
   },
   "common": {
     "loadmore": "Load More",
-    "loading": "Loading..."
+    "loading": "Loading...",
+    "moreInfo": "More Info",
+    "typeMovieName": "Type movie name",
+    "search": "Search",
+    "searching": "Search..."
   },
   "title": {
-    "trendingMovie": "Trending Movies",
-    "collectionMovie": "Movie Collections",
+    "trending": "Trending",
+    "collection": "Collections",
     "topRated": "Top Rated",
-    "casts": "Cast",
+    "casts": "Casts",
     "upcoming": "Upcoming",
     "nowPlaying": "Now Playing"
   },
@@ -20,7 +24,8 @@
     "week": "Week"
   },
   "discover": {
-    "genres": "Genres"
+    "genres": "Genres",
+    "noResults": "No movies found."
   },
   "movie": {
     "overview": "Overview",
@@ -28,6 +33,10 @@
     "runtime": "Runtime",
     "genres": "Genres",
     "cast": "Cast",
-    "countMovie": "{count} Movies"
+    "countMovie": "No Movie | 1 Movie | {count} Movies",
+    "unknown": "Unknown",
+    "hours": " hours ",
+    "minutes": " minutes",
+    "trailer": "Trailer"
   }
 }

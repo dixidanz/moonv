@@ -13,7 +13,7 @@ onMounted(async () => {
 
 <template>
   <section class="w-full container mx-auto px-2 space-y-6">
-    <SectionTitle title="最高評分" />
+    <SectionTitle :title="$t('title.topRated')" />
 
     <MovieList
       :movies="movieTopRated.results"

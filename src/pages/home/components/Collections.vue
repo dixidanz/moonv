@@ -26,10 +26,10 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="relative overflow-hidden py-4 container mx-auto px-2 space-y-6">
+  <div class="relative overflow-hidden py-4 container mx-auto px-2 space-y-6 mb-4">
     <SectionTitle
       v-if="collections.length"
-      title="系列電影" />
+      :title="$t('title.collectionMovie')" />
 
     <div class="relative z-10 container mx-auto px-4 py-4">
       <div

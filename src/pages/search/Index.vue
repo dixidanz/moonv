@@ -47,15 +47,15 @@ const handleKeyPress = (event: KeyboardEvent) => {
           <input
             v-model="searchQuery"
             type="text"
-            placeholder="輸入電影名稱..."
+            :placeholder="$t('common.typeMovieName')"
             class="flex-1 px-4 py-3 rounded-full border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
             @keypress="handleKeyPress" />
           <button
             :disabled="!searchQuery.trim() || loading"
             class="btn_gradient_primary min-w-20 px-4 py-3 font-semibold rounded-full transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
             @click="handleSearch">
-            <span v-if="!loading">搜尋</span>
-            <span v-else>搜尋中...</span>
+            <span v-if="!loading">{{ $t('common.search') }}</span>
+            <span v-else>{{ $t('common.searching') }}</span>
           </button>
         </div>
       </div>

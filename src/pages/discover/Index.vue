@@ -55,7 +55,7 @@ onMounted(async () => {
         <div class="rounded-xl p-6 shadow-lg dark:shadow-black/50">
           <div class="mb-6">
             <h3 class="text-xl font-medium mb-4 text-default">
-              類型
+              {{ $t('discover.genres') }}
             </h3>
             <div class="flex flex-wrap gap-3">
               <Badge
@@ -76,7 +76,7 @@ onMounted(async () => {
         v-else-if="movies.length === 0"
         class="text-center py-12">
         <p class="text-xl text-default">
-          找不到符合條件的電影
+          {{ $t('discover.noResults') }}
         </p>
       </div>
 

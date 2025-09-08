@@ -60,21 +60,15 @@ const hasYouTubeTrailer = computed(() => youtubeTrailers.value.length > 0)
 
 const hasImdbId = computed(() => !!movie.value?.imdb_id)
 
+const { t } = useI18n()
+
 const formatRuntime = (minutes: number | null): string => {
-  if (!minutes) return '未知'
+  if (!minutes) return t('movie.unknown')
   const hours = Math.floor(minutes / 60)
   const mins = minutes % 60
-  return hours > 0 ? `${hours}小時 ${mins}分鐘` : `${mins}分鐘`
-}
-
-const formatReleaseDate = (dateString: string) => {
-  if (!dateString) return '未知'
-  const date = new Date(dateString)
-  return date.toLocaleDateString('zh-TW', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric'
-  })
+  return hours > 0
+    ? `${hours} ${t('movie.hours')} ${mins} ${t('movie.minutes')}`
+    : `${mins} ${t('movie.minutes')}`
 }
 
 const openYouTubeTrailer = () => {
@@ -140,10 +134,10 @@ onMounted(async () => {
               v-if="movie.genres.length > 0"
               class="space-y-2">
               <h3 class="text-2xl font-semibold text-default/60">
-                上映日期
+                {{ $t('movie.releaseDate') }}
               </h3>
               <p class="text-default tracking-wider">
-                {{ formatReleaseDate(movie.release_date) }}
+                {{ $d(new Date(movie.release_date), 'short') }}
               </p>
             </div>
 
@@ -151,7 +145,7 @@ onMounted(async () => {
               v-if="movie.genres.length > 0"
               class="space-y-2">
               <h3 class="text-2xl font-semibold text-default/60">
-                片長
+                {{ $t('movie.runtime') }}
               </h3>
               <p class="text-default">
                 {{ formatRuntime(movie.runtime) }}
@@ -163,7 +157,7 @@ onMounted(async () => {
             v-if="movie.genres.length > 0"
             class="space-y-2">
             <h3 class="text-2xl font-semibold text-default/60">
-              類型
+              {{ $t('movie.genres') }}
             </h3>
             <div class="flex flex-wrap gap-2">
               <Badge
@@ -178,7 +172,7 @@ onMounted(async () => {
             v-if="movie.overview"
             class="space-y-2">
             <h3 class="text-2xl font-semibold text-default/60">
-              劇情簡介
+              {{ $t('movie.overview') }}
             </h3>
             <p class="text-default text-xl">
               {{ movie.overview }}
@@ -190,7 +184,7 @@ onMounted(async () => {
               v-if="hasYouTubeTrailer"
               class="py-2 px-4 bg-[#FF0233] text-white font-bold rounded-md hover:opacity-90 flex items-center text-lg group"
               @click="openYouTubeTrailer">
-              預告片
+              {{ $t('movie.trailer') }}
               <span class="icon-[carbon--arrow-up-right] ml-1 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-500"></span>
             </button>
             <button
@@ -208,7 +202,7 @@ onMounted(async () => {
     <div
       v-if="movie.casts?.cast?.length > 0"
       class="mt-12 space-y-6">
-      <SectionTitle title="演員陣容" />
+      <SectionTitle :title="$t('title.casts')" />
       <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-10 gap-4">
         <div
           v-for="actor of movie.casts.cast"

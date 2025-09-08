@@ -19,7 +19,7 @@ onMounted(() => {
 
 <template>
   <div class="container mx-auto px-4 py-8 space-y-6">
-    <SectionTitle title="即將上映" />
+    <SectionTitle :title="$t('title.upcoming')" />
     <LoadingSpinner v-if="loading && movies.length === 0" />
     <MovieList
       v-else

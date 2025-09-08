@@ -9,7 +9,23 @@ import messages from '@intlify/unplugin-vue-i18n/messages'
 const i18n = createI18n({
   locale: 'zh-TW',
   fallbackLocale: 'zh-TW',
-  messages
+  messages,
+  datetimeFormats: {
+    'en-US': {
+      short: {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+      }
+    },
+    'zh-TW': {
+      short: {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+      }
+    }
+  }
 })
 
 const app = createApp(App)

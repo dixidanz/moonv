@@ -35,8 +35,8 @@ defineEmits<{
         :disabled="loading"
         class="btn_gradient_primary px-6 py-3 font-semibold rounded-full disabled:cursor-not-allowed cursor-pointer"
         @click="$emit('load')">
-        <span v-if="!loading">載入更多</span>
-        <span v-else>載入中...</span>
+        <span v-if="!loading">{{ $t('common.loadmore') }}</span>
+        <span v-else>{{ $t('common.loading') }}</span>
       </button>
     </div>
   </div>
