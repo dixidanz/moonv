@@ -1,0 +1,33 @@
+{
+  "navigation": {
+    "discover": "Discover",
+    "search": "Search"
+  },
+  "common": {
+    "loadmore": "Load More",
+    "loading": "Loading..."
+  },
+  "title": {
+    "trendingMovie": "Trending Movies",
+    "collectionMovie": "Movie Collections",
+    "topRated": "Top Rated",
+    "casts": "Cast",
+    "upcoming": "Upcoming",
+    "nowPlaying": "Now Playing"
+  },
+  "trending": {
+    "day": "Today",
+    "week": "Week"
+  },
+  "discover": {
+    "genres": "Genres"
+  },
+  "movie": {
+    "overview": "Overview",
+    "releaseDate": "Release Date",
+    "runtime": "Runtime",
+    "genres": "Genres",
+    "cast": "Cast",
+    "countMovie": "{count} Movies"
+  }
+}

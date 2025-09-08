@@ -16,7 +16,7 @@ const scrollToTop = () => {
     <Transition name="fade-scale">
       <button
         v-show="isVisible"
-        class="btn_gradient_primary fixed bottom-6 right-6 z-50 w-12 h-12 flex items-center justify-center group rounded-full md:w-14 md:h-14 md:bottom-8 md:right-8 "
+        class="btn_gradient_primary fixed bottom-38 right-6 z-50 w-12 h-12 flex items-center justify-center group rounded-full md:w-14 md:h-14 md:bottom-33 md:right-8"
         aria-label="回到頂部"
         @click="scrollToTop">
         <span class="icon-[carbon--up-to-top] text-lg md:text-xl group-hover:scale-110 transition-transform duration-200"></span>
