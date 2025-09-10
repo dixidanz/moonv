@@ -29,6 +29,9 @@ const params = {
 const initializeSwiper = () => {
   const swiperEl = document.querySelector('swiper-container')
   if (swiperEl) {
+    if (swiperEl.swiper) {
+      swiperEl.swiper.destroy(true, true)
+    }
     Object.assign(swiperEl, params)
     swiperEl.initialize()
   }
@@ -45,6 +48,14 @@ watch(() => props.loading, loading => {
 onMounted(() => {
   if (!props.loading && props.list.length > 0) {
     initializeSwiper()
+  }
+})
+
+onActivated(() => {
+  if (!props.loading && props.list.length > 0) {
+    nextTick(() => {
+      initializeSwiper()
+    })
   }
 })
 </script>
