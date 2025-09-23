@@ -37,6 +37,8 @@
     "unknown": "Unknown",
     "hours": " hours ",
     "minutes": " minutes",
-    "trailer": "Trailer"
+    "trailer": "Trailer",
+    "expandCast": "Show full cast",
+    "collapseCast": "Show less"
   }
 }

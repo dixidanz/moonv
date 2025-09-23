@@ -37,6 +37,8 @@
     "unknown": "未知",
     "hours": "小時",
     "minutes": "分鐘",
-    "trailer": "預告片"
+    "trailer": "預告片",
+    "expandCast": "顯示全部演員",
+    "collapseCast": "收合演員"
   }
 }

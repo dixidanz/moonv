@@ -105,6 +105,8 @@ onMounted(async () => {
 useLocaleReload(async () => {
   await loadMovieDetail()
 })
+
+const isCastExpanded = ref(false)
 </script>
 
 <template>
@@ -209,7 +211,16 @@ useLocaleReload(async () => {
       v-if="movie.casts?.cast?.length > 0"
       class="mt-12 space-y-6">
       <SectionTitle :title="$t('title.casts')" />
-      <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-10 gap-4">
+      <div
+        class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-10 gap-4 relative pb-25"
+        :class="isCastExpanded ? 'h-auto overflow-visible' : 'h-100 overflow-hidden rounded-lg'">
+        <button
+          class="absolute left-0 w-full h-20 bottom-0 text-primary z-10 flex items-center justify-center p-2 text-lg cursor-pointer"
+          :class="isCastExpanded ? 'bg-transparent' : 'bg-black/50 backdrop-blur-md'"
+          @click="isCastExpanded = !isCastExpanded">
+          {{ isCastExpanded ? $t('movie.collapseCast') : $t('movie.expandCast') }}
+          <span :class="isCastExpanded ? 'icon-[carbon--chevron-up]' : 'icon-[carbon--chevron-down]'"></span>
+        </button>
         <div
           v-for="actor of movie.casts.cast"
           :key="actor.id"
