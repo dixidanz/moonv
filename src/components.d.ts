@@ -12,16 +12,13 @@ declare module 'vue' {
     Badge: typeof import('./components/Badge.vue')['default']
     Banner: typeof import('./components/Banner.vue')['default']
     LoadingSpinner: typeof import('./components/LoadingSpinner.vue')['default']
-    MovieCategoryButtons: typeof import('./pages/home/components/CategoryButtons.vue')['default']
     MovieList: typeof import('./components/MovieList.vue')['default']
     PosterCard: typeof import('./components/PosterCard.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     SectionTitle: typeof import('./components/SectionTitle.vue')['default']
     Skeleton: typeof import('./components/Skeleton.vue')['default']
-    StackedCard: typeof import('./pages/home/components/Card.vue')['default']
     TheFooter: typeof import('./components/TheFooter.vue')['default']
     TheHeader: typeof import('./components/TheHeader.vue')['default']
-    YearBadge: typeof import('./components/YearBadge.vue')['default']
   }
 }
