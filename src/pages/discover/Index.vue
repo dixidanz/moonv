@@ -43,16 +43,16 @@ watch(currentFilters, async () => {
 })
 
 const genreStore = useGenreStore()
-const { genres } = storeToRefs(genreStore)
+const { genres, loading: genreLoading } = storeToRefs(genreStore)
 
 onMounted(async () => {
-  await genreStore.loadMovieGenre()
-  await reload(currentFilters.value)
+  genreStore.loadMovieGenre()
+  reload(currentFilters.value)
 })
 
 useLocaleReload(async () => {
-  await genreStore.loadMovieGenre()
-  await reload(currentFilters.value)
+  genreStore.loadMovieGenre()
+  reload(currentFilters.value)
 })
 </script>
 
@@ -66,8 +66,16 @@ useLocaleReload(async () => {
               {{ $t('discover.genres') }}
             </h3>
             <div class="flex flex-wrap gap-3">
+              <template v-if="genreLoading">
+                <div
+                  v-for="item of 3"
+                  :key="item"
+                  class="h-8 rounded-full bg-gray-300 dark:bg-gray-600 w-15 animate-pulse">
+                </div>
+              </template>
               <Badge
                 v-for="genre of genres"
+                v-else
                 :key="genre.id"
                 can-click
                 :active="isGenreSelected(genre.id)"
