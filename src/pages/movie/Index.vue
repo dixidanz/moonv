@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import type { MovieDetail, VideoItem } from '@/types'
 import { getImageUrl } from '@/api/movie'
-import placeholderProfile from '@/assets/images/placeholder-profile.png'
 import placeholderPoster from '@/assets/images/placeholder-poster.png'
 import LoadingSpinner from '@/components/LoadingSpinner.vue'
 import Stream from './components/Stream.vue'
+import Casts from './components/Casts.vue'
 import { formatGenres } from '@/utils'
 
 const route = useRoute()
@@ -109,8 +109,6 @@ onMounted(async () => {
 useLocaleReload(async () => {
   await loadMovieDetail()
 })
-
-const isCastExpanded = ref(false)
 </script>
 
 <template>
@@ -214,41 +212,8 @@ const isCastExpanded = ref(false)
     <Stream
       class="mt-12"
       :stream="movie['watch/providers']" />
-    <div
-      v-if="movie.casts?.cast?.length > 0"
-      class="mt-12 space-y-6">
-      <SectionTitle :title="$t('title.casts')" />
-      <div
-        class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-10 gap-4 relative pb-25"
-        :class="isCastExpanded ? 'h-auto overflow-visible' : 'h-100 overflow-hidden rounded-lg'">
-        <button
-          class="absolute left-0 w-full h-20 bottom-0 text-primary z-10 flex items-center justify-center p-2 text-lg cursor-pointer"
-          :class="isCastExpanded ? 'bg-transparent' : 'bg-black/50 backdrop-blur-md'"
-          @click="isCastExpanded = !isCastExpanded">
-          {{ isCastExpanded ? $t('movie.collapseCast') : $t('movie.expandCast') }}
-          <span :class="isCastExpanded ? 'icon-[carbon--chevron-up]' : 'icon-[carbon--chevron-down]'"></span>
-        </button>
-        <div
-          v-for="actor of movie.casts.cast"
-          :key="actor.id"
-          class="text-center group cursor-pointer">
-          <div class="relative mb-3">
-            <img
-              :src="getImageUrl(actor.profile_path, 'w200')"
-              :alt="actor.name"
-              class="w-full aspect-[3/4] object-cover rounded-lg shadow-xl"
-              @error="(e) => {
-                (e.target as HTMLImageElement).src = placeholderProfile
-              }" />
-          </div>
-          <h4 class="font-medium text-default text-sm mb-1">
-            {{ actor.original_name }}
-          </h4>
-          <p class="text-xs text-gray-600">
-            {{ actor.character }}
-          </p>
-        </div>
-      </div>
-    </div>
+    <Casts
+      class="mt-12"
+      :casts="movie.casts" />
   </div>
 </template>
