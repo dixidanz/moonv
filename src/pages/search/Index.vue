@@ -5,6 +5,9 @@ defineOptions({
   name: pageNameMap.search
 })
 
+const searchInput = useTemplateRef('searchInput')
+useFocus(searchInput, { initialValue: true })
+
 const searchQuery = ref('')
 const hasSearched = ref(false)
 const currentQuery = ref('')
@@ -51,6 +54,7 @@ useLocaleReload(async () => {
       <div class="mb-8">
         <div class="flex gap-4 max-w-2xl mx-auto">
           <input
+            ref="searchInput"
             v-model="searchQuery"
             type="text"
             :placeholder="$t('common.typeMovieName')"
