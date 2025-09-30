@@ -7,12 +7,14 @@ const props = defineProps<{
   casts: MovieDetail['casts']
 }>()
 
+const initialVisible = 10
+
 const isCastExpanded = ref(false)
 
 const castsList = computed(() => {
   const cast = props.casts?.cast || []
   if (!cast.length) return []
-  return isCastExpanded.value ? cast : cast.slice(0, 10)
+  return isCastExpanded.value ? cast : cast.slice(0, initialVisible)
 })
 </script>
 
@@ -45,6 +47,7 @@ const castsList = computed(() => {
     </div>
 
     <button
+      v-if="casts.cast?.length > initialVisible"
       class="flex items-center justify-center p-2 text-lg cursor-pointer text-primary mt-4"
       @click="isCastExpanded = !isCastExpanded">
       {{ isCastExpanded ? $t('movie.collapseCast') : $t('movie.expandCast') }}
