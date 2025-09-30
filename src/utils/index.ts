@@ -24,3 +24,15 @@ export const formatGenres: Record<string, string> = {
   战争: '戰爭',
   西部: '西部'
 }
+
+export const movieProvidersUrl: Record<number, string> = {
+  8: 'https://www.netflix.com',
+  119: 'https://www.primevideo.com/',
+  337: 'https://www.disneyplus.com/',
+  2: 'https://tv.apple.com/tw',
+  159: 'https://www.catchplay.com/tw',
+  350: 'https://tv.apple.com/tw',
+  624: 'https://www.kktv.me/',
+  625: 'https://www.linetv.tw/',
+  1899: 'https://play.hbomax.com/'
+}

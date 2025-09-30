@@ -17,7 +17,8 @@
     "topRated": "最高評分",
     "casts": "演員陣容",
     "upcoming": "即將上映",
-    "nowPlaying": "正在上映"
+    "nowPlaying": "正在上映",
+    "streamingServices": "串流服務"
   },
   "trending": {
     "day": "本日熱門",
@@ -39,6 +40,9 @@
     "minutes": "分鐘",
     "trailer": "預告片",
     "expandCast": "顯示全部演員",
-    "collapseCast": "收合演員"
+    "collapseCast": "收合演員",
+    "buy": "購買",
+    "rent": "租借",
+    "stream": "串流"
   }
 }

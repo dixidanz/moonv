@@ -20,9 +20,9 @@ const handleToggleTheme = () => {
 
 <template>
   <footer class="w-full shadow-xl bg-secondary dark:shadow-primary/10 mt-auto text-gray-300">
-    <div class="px-6 py-8 flex justify-between items-center">
-      <div class="flex-1">
-        <div class="flex items-center gap-2 mb-4 flex-wrap">
+    <div class="px-6 py-8 flex justify-between items-center flex-col md:flex-row">
+      <div class="flex-1 mb-4 md:mb-0">
+        <div class="flex items-center gap-2 mb-1 flex-wrap">
           <span>Data provided by</span>
           <a
             href="https://www.themoviedb.org"
@@ -35,6 +35,12 @@ const handleToggleTheme = () => {
               class="h-4" />
           </a>
         </div>
+        <p class="mb-2">
+          Streaming data provided by
+          <a
+            href="https://www.justwatch.com/"
+            class="text-[#FACE41]">JustWatch</a>.
+        </p>
         <p class="text-sm">
           This product uses the TMDB API but is not endorsed or certified by TMDB.
         </p>

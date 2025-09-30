@@ -87,24 +87,41 @@ export interface Crew {
   job: string
 }
 
+export type MovieProviderType = 'flatrate' | 'rent' | 'buy'
+
+export interface MovieProvider {
+  display_priority: number
+  logo_path: string
+  provider_id: number
+  provider_name: string
+}
+
 export interface MovieDetail extends Movie {
-  budget: number
-  genres: Genre[]
-  homepage: string | null
-  imdb_id: string | null
-  production_companies: ProductionCompany[]
-  production_countries: ProductionCountry[]
-  revenue: number
-  runtime: number | null
-  spoken_languages: SpokenLanguage[]
-  status: string
-  tagline: string | null
-  videos: {
+  'budget': number
+  'genres': Genre[]
+  'homepage': string | null
+  'imdb_id': string | null
+  'production_companies': ProductionCompany[]
+  'production_countries': ProductionCountry[]
+  'revenue': number
+  'runtime': number | null
+  'spoken_languages': SpokenLanguage[]
+  'status': string
+  'tagline': string | null
+  'videos': {
     results: VideoItem[]
   }
-  casts: {
+  'casts': {
     cast: Cast[]
     crew: Crew[]
+  }
+  'watch/providers': {
+    results: Record<
+      string,
+      {
+        link: string
+      } & Partial<Record<MovieProviderType, MovieProvider[]>>
+    >
   }
 }
 

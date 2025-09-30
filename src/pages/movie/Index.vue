@@ -4,43 +4,47 @@ import { getImageUrl } from '@/api/movie'
 import placeholderProfile from '@/assets/images/placeholder-profile.png'
 import placeholderPoster from '@/assets/images/placeholder-poster.png'
 import LoadingSpinner from '@/components/LoadingSpinner.vue'
+import Stream from './components/Stream.vue'
 import { formatGenres } from '@/utils'
 
 const route = useRoute()
 const router = useRouter()
 
 const movie = ref<MovieDetail>({
-  id: 0,
-  title: '',
-  overview: '',
-  poster_path: null,
-  backdrop_path: null,
-  release_date: '',
-  vote_average: 0,
-  vote_count: 0,
-  popularity: 0,
-  genre_ids: [],
-  adult: false,
-  original_language: '',
-  original_title: '',
-  video: false,
-  budget: 0,
-  genres: [],
-  homepage: null,
-  imdb_id: null,
-  production_companies: [],
-  production_countries: [],
-  revenue: 0,
-  runtime: null,
-  spoken_languages: [],
-  status: '',
-  tagline: null,
-  videos: {
+  'id': 0,
+  'title': '',
+  'overview': '',
+  'poster_path': null,
+  'backdrop_path': null,
+  'release_date': '',
+  'vote_average': 0,
+  'vote_count': 0,
+  'popularity': 0,
+  'genre_ids': [],
+  'adult': false,
+  'original_language': '',
+  'original_title': '',
+  'video': false,
+  'budget': 0,
+  'genres': [],
+  'homepage': null,
+  'imdb_id': null,
+  'production_companies': [],
+  'production_countries': [],
+  'revenue': 0,
+  'runtime': null,
+  'spoken_languages': [],
+  'status': '',
+  'tagline': null,
+  'videos': {
     results: []
   },
-  casts: {
+  'casts': {
     cast: [],
     crew: []
+  },
+  'watch/providers': {
+    results: {}
   }
 })
 const loading = ref(true)
@@ -193,20 +197,23 @@ const isCastExpanded = ref(false)
               class="py-2 px-4 bg-[#FF0233] text-white font-bold rounded-md hover:opacity-90 flex items-center text-lg group"
               @click="openYouTubeTrailer">
               {{ $t('movie.trailer') }}
-              <span class="icon-[carbon--arrow-up-right] ml-1 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-500"></span>
+              <span class="icon-[carbon--arrow-up-right] ml-1 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-500"></span>
             </button>
             <button
               v-if="hasImdbId"
               class="py-2 px-4 bg-[#FEC400] text-black font-bold rounded-md hover:opacity-90 flex items-center text-lg group"
               @click="openImdb">
               IMDb
-              <span class="icon-[carbon--arrow-up-right] ml-1 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-500"></span>
+              <span class="icon-[carbon--arrow-up-right] ml-1 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-500"></span>
             </button>
           </div>
         </div>
       </div>
     </div>
 
+    <Stream
+      class="mt-12"
+      :stream="movie['watch/providers']" />
     <div
       v-if="movie.casts?.cast?.length > 0"
       class="mt-12 space-y-6">

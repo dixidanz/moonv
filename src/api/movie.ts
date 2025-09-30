@@ -55,7 +55,7 @@ export const getMovieTopRate = async (page = 1): Promise<MovieList> => {
 
 export const getMovieDetail = async (movieId: number): Promise<MovieDetail | NotFound> => {
   try {
-    return await request.get(`/movie/${movieId}`, { params: { ...getQuery(), append_to_response: 'videos,casts' } })
+    return await request.get(`/movie/${movieId}`, { params: { ...getQuery(), append_to_response: 'videos,casts,watch/providers' } })
   } catch (error) {
     return {
       status_code: 34,

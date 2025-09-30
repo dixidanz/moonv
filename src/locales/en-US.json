@@ -17,7 +17,8 @@
     "topRated": "Top Rated",
     "casts": "Casts",
     "upcoming": "Upcoming",
-    "nowPlaying": "Now Playing"
+    "nowPlaying": "Now Playing",
+    "streamingServices": "Streaming Services"
   },
   "trending": {
     "day": "Today",
@@ -39,6 +40,9 @@
     "minutes": " minutes",
     "trailer": "Trailer",
     "expandCast": "Show full cast",
-    "collapseCast": "Show less"
+    "collapseCast": "Show less",
+    "buy": "Buy",
+    "rent": "Rent",
+    "stream": "Stream"
   }
 }
