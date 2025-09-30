@@ -2,6 +2,7 @@
 import type { MovieList } from '@/types'
 import { register } from 'swiper/element'
 import { Pagination, Autoplay } from 'swiper/modules'
+import type { SwiperOptions } from 'swiper/types'
 import { getImageUrl } from '@/api/movie'
 import { formatReleaseYear } from '@/utils'
 import PaginationStyle from 'swiper/element/css/pagination?url'
@@ -14,7 +15,7 @@ const props = defineProps<{
 
 register()
 
-const params = {
+const params: SwiperOptions = {
   modules: [Pagination, Autoplay],
   injectStylesUrls: [PaginationStyle, AutoplayStyle],
   autoplay: {
@@ -26,7 +27,17 @@ const params = {
   }
 }
 
+const activeIndex = ref(0)
+
+const currentItem = computed(() => props.list[activeIndex.value] ?? null)
+
+const onSlideChange = (e: any) => {
+  const [swiper] = e.detail
+  activeIndex.value = swiper.activeIndex
+}
+
 const initializeSwiper = () => {
+  activeIndex.value = 0
   const swiperEl = document.querySelector('swiper-container')
   if (swiperEl) {
     if (swiperEl.swiper) {
@@ -71,28 +82,38 @@ onActivated(() => {
       class="absolute inset-0" />
   </div>
 
-  <swiper-container
+  <div
     v-else
-    :init="false"
-    class="overflow-hidden shadow-2xl">
-    <swiper-slide
-      v-for="item of list"
-      :key="item.id"
-      :loop="list.length >= 3">
-      <div class="relative overflow-hidden">
+    class="relative overflow-hidden shadow-2xl h-160">
+    <div class="absolute inset-0">
+      <Transition
+        name="fade-in"
+        mode="out-in">
         <img
-          :src="getImageUrl(item.backdrop_path || '', 'w780')"
-          :srcset="`${getImageUrl(item.backdrop_path || '', 'w300')} 300w,
-                    ${getImageUrl(item.backdrop_path || '', 'w780')} 780w,
-                    ${getImageUrl(item.backdrop_path || '', 'w1280')} 1280w`"
+          v-if="currentItem"
+          :key="currentItem.id"
+          :src="getImageUrl(currentItem.backdrop_path || '', 'w780')"
+          :srcset="`${getImageUrl(currentItem.backdrop_path || '', 'w300')} 300w,
+                    ${getImageUrl(currentItem.backdrop_path || '', 'w780')} 780w,
+                    ${getImageUrl(currentItem.backdrop_path || '', 'w1280')} 1280w`"
           sizes="(max-width: 640px) 300w, (max-width: 1024px) 780px, (max-width: 1280px) 1280px"
-          :alt="item.title"
-          class="w-full h-160 object-cover object-center sm:object-top" />
+          :alt="currentItem.title"
+          class="absolute inset-0 w-full h-full object-cover object-center sm:object-top" />
+      </Transition>
+    </div>
 
-        <div class="gradient_overlay absolute inset-0"></div>
+    <div class="gradient_overlay absolute inset-0 z-10"></div>
 
-        <div class="absolute inset-0 flex items-end p-8 md:p-12">
-          <div class="max-w-2xl text-white space-y-4">
+    <div class="absolute inset-0 z-20 flex items-end">
+      <swiper-container
+        :init="false"
+        class="w-full h-full"
+        @swiperslidechange="onSlideChange">
+        <swiper-slide
+          v-for="item of list"
+          :key="item.id"
+          class="p-8 md:p-12">
+          <div class="max-w-2xl text-white space-y-4 w-full">
             <div class="flex flex-wrap items-center gap-4 text-sm md:text-base">
               <Badge>{{ formatReleaseYear(item.release_date) }}</Badge>
 
@@ -101,25 +122,25 @@ onActivated(() => {
                 <span class="font-bold text-white">{{ item.vote_average?.toFixed(1) }}</span>
               </Badge>
             </div>
-            <h1 class="movie_title text-4xl md:text-6xl lg:text-7xl font-black leading-tight bg-gradient-to-r from-white to-gray-200 bg-clip-text text-transparent">
+            <h1 class="movie_title text-4xl md:text-6xl lg:text-7xl font-black leading-tight bg-gradient-to-r from-white to-gray-200 bg-clip-text text-transparent line-clamp-3">
               {{ item.title }}
             </h1>
-            <p class="movie-overview text-lg md:text-xl leading-relaxed text-white/95 line-clamp-3 max-w-3xl">
+            <p
+              v-if="item.overview"
+              class="movie-overview text-lg md:text-xl leading-relaxed text-white/95 line-clamp-3 max-w-3xl">
               {{ item.overview }}
             </p>
-            <div class="flex flex-col sm:flex-row gap-4 pt-4">
-              <RouterLink
-                :to="{ name: 'movie', params: { id: item.id } }"
-                class="btn-shadow flex items-center justify-center gap-3 px-6 py-3 bg-white/20 backdrop-blur-md border-2 border-primary text-white font-semibold rounded-full transition-all duration-300 hover:bg-white/30 hover:scale-105">
-                <span class="icon-[carbon--information] text-xl"></span>
-                {{ $t('common.moreInfo') }}
-              </RouterLink>
-            </div>
+            <RouterLink
+              :to="{ name: 'movie', params: { id: item.id } }"
+              class="my-4 flex w-full sm:w-fit items-center justify-center gap-3 px-6 py-3 bg-white/20 backdrop-blur-md border-2 border-primary text-white font-semibold rounded-full transition-all duration-300 hover:bg-white/30">
+              <span class="icon-[carbon--information] text-xl"></span>
+              {{ $t('common.moreInfo') }}
+            </RouterLink>
           </div>
-        </div>
-      </div>
-    </swiper-slide>
-  </swiper-container>
+        </swiper-slide>
+      </swiper-container>
+    </div>
+  </div>
 </template>
 
 <style scoped>
@@ -133,9 +154,24 @@ onActivated(() => {
   text-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
 }
 
+.fade-in-enter-active,
+.fade-in-leave-active {
+  transition: opacity 0.3s ease;
+}
+
+.fade-in-enter-from,
+.fade-in-leave-to {
+  opacity: 0;
+}
+
 swiper-container {
   --swiper-pagination-bullet-border-radius: 20px;
   --swiper-pagination-bullet-inactive-color: var(--c-primary-light);
+}
+
+swiper-slide {
+  display: flex;
+  align-items: flex-end;
 }
 
 swiper-container::part(bullet-active) {
