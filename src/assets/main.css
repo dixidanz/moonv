@@ -21,6 +21,7 @@
   --color-primary-light: var(--c-primary-light);
   --color-secondary: var(--c-secondary);
   --color-default: var(--c-default);
+  --color-background-main: var(--c-background-main);
 }
 
 body {

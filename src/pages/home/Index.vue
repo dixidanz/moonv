@@ -21,7 +21,7 @@ useLocaleReload(() => {
 </script>
 
 <template>
-  <div class="pb-12">
+  <div class="pb-12 -translate-y-16">
     <Banner
       :list="[...moviePopular.results].sort(() => Math.random() - 0.5)"
       :loading="isLoadingPopular" />
