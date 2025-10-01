@@ -49,9 +49,9 @@ useLocaleReload(async () => {
 </script>
 
 <template>
-  <div class="bg-main text-default p-6">
+  <div class="text-default px-4 sm:px-6 pt-10 pb-10">
     <div class="max-w-6xl mx-auto">
-      <div class="mb-8">
+      <div class="pb-8">
         <div class="flex gap-4 max-w-2xl mx-auto">
           <input
             ref="searchInput"

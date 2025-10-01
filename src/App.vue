@@ -6,7 +6,7 @@ const { keepAlivePages } = storeToRefs(keepAliveStore)
 <template>
   <div class="min-h-screen">
     <TheHeader />
-    <main class="min-h-[calc(100vh-64px-124px)]">
+    <main class="min-h-[calc(100vh-64px-280px)] md:min-h-[calc(100vh-64px-144px)]">
       <RouterView v-slot="{ Component, route }">
         <keep-alive :include="keepAlivePages">
           <component

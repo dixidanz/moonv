@@ -19,7 +19,7 @@ const handleToggleTheme = () => {
 </script>
 
 <template>
-  <footer class="w-full shadow-xl bg-secondary dark:shadow-primary/10 mt-auto text-gray-300">
+  <footer class="w-full bg-secondary mt-auto text-gray-300 md:h-36 h-70">
     <div class="px-6 py-8 flex justify-between items-center flex-col md:flex-row">
       <div class="flex-1 mb-4 md:mb-0">
         <div class="flex items-center gap-2 mb-1 flex-wrap">
