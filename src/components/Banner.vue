@@ -84,7 +84,7 @@ onActivated(() => {
 
   <div
     v-else
-    class="relative overflow-hidden shadow-2xl h-160">
+    class="relative overflow-hidden shadow-2xl h-160 lg:h-200">
     <div class="absolute inset-0">
       <Transition
         name="fade-in"
@@ -95,8 +95,8 @@ onActivated(() => {
           :src="getImageUrl(currentItem.backdrop_path || '', 'w780')"
           :srcset="`${getImageUrl(currentItem.backdrop_path || '', 'w300')} 300w,
                     ${getImageUrl(currentItem.backdrop_path || '', 'w780')} 780w,
-                    ${getImageUrl(currentItem.backdrop_path || '', 'w1280')} 1280w`"
-          sizes="(max-width: 640px) 300w, (max-width: 1024px) 780px, (max-width: 1280px) 1280px"
+                    ${getImageUrl(currentItem.backdrop_path || '', 'w1280')} 1280w,
+                    ${getImageUrl(currentItem.backdrop_path || '', 'original')} 1600w`"
           :alt="currentItem.title"
           class="absolute inset-0 w-full h-full object-cover object-center sm:object-top" />
       </Transition>
