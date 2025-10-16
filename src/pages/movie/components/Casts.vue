@@ -29,13 +29,12 @@ const castsList = computed(() => {
         :key="actor.id"
         class="text-center group cursor-pointer">
         <div class="relative mb-3">
-          <img
+          <TheImage
             :src="getImageUrl(actor.profile_path, 'w200')"
             :alt="actor.name"
             class="w-full aspect-[3/4] object-cover rounded-lg shadow-xl"
-            @error="(e) => {
-              (e.target as HTMLImageElement).src = placeholderProfile
-            }" />
+            lazy
+            :error-img="placeholderProfile" />
         </div>
         <h4 class="font-medium text-default text-sm mb-1">
           {{ actor.name }}

@@ -1,18 +1,30 @@
 <script setup lang="ts">
+import { computed } from 'vue'
 import type { Movie } from '@/types'
 import { getImageUrl } from '@/api/movie'
 import { formatReleaseYear } from '@/utils'
 import placeholderPoster from '@/assets/images/placeholder-poster.png'
+import TheImage from '@/components/TheImage.vue'
 
-withDefaults(defineProps<{
+const props = withDefaults(defineProps<{
   movie?: Movie
   rank?: number
   loading?: boolean
   width?: string
   height?: string
+  lazy?: boolean
 }>(), {
   width: '100%',
-  height: '100%'
+  height: '100%',
+  lazy: false
+})
+
+const posterImageUrl = computed(() => {
+  if (!props.movie?.poster_path) {
+    return ''
+  }
+
+  return getImageUrl(props.movie.poster_path, 'w500')
 })
 </script>
 
@@ -43,13 +55,12 @@ withDefaults(defineProps<{
     <div
       class="relative w-full h-full block rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105"
       :style="{ width, height }">
-      <img
-        :src="getImageUrl(movie.poster_path || '', 'w500')"
+      <TheImage
+        :src="posterImageUrl"
         :alt="movie.title"
-        class="w-full h-full object-cover"
-        @error="(e) => {
-          (e.target as HTMLImageElement).src = placeholderPoster
-        }" />
+        :lazy="lazy"
+        :error-img="placeholderPoster"
+        class="w-full h-full object-cover" />
 
       <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
 

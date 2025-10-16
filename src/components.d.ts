@@ -20,5 +20,6 @@ declare module 'vue' {
     Skeleton: typeof import('./components/Skeleton.vue')['default']
     TheFooter: typeof import('./components/TheFooter.vue')['default']
     TheHeader: typeof import('./components/TheHeader.vue')['default']
+    TheImage: typeof import('./components/TheImage.vue')['default']
   }
 }

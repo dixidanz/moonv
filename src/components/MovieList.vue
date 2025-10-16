@@ -1,10 +1,11 @@
 <script setup lang="ts">
 import type { Movie } from '@/types'
 
-defineProps<{
+const { lazy = false } = defineProps<{
   movies: Movie[]
   loading: boolean
   hasMore: boolean
+  lazy?: boolean
 }>()
 defineEmits<{
   load: []
@@ -25,6 +26,7 @@ defineEmits<{
         v-for="movie of movies"
         :key="movie.id"
         :movie="movie"
+        :lazy="lazy"
         class="p-2" />
     </div>
 

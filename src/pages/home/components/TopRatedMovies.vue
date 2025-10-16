@@ -23,6 +23,7 @@ useLocaleReload(async () => {
       :movies="movieTopRated.results"
       :loading="isLoadingTopRated"
       :has-more="hasMoreTopRated"
+      lazy
       @load="movieStore.loadMoreTopRated" />
   </section>
 </template>

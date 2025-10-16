@@ -126,7 +126,8 @@ watch(() => isLoadingTrending.value, loading => {
               :movie="movie"
               :rank="index + 1"
               width="192px"
-              height="288px" />
+              height="288px"
+              :lazy="index >= 10" />
           </swiper-slide>
         </swiper-container>
 
