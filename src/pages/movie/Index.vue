@@ -89,6 +89,11 @@ const openImdb = () => {
   }
 }
 
+const openPttMovieSearch = (title: string) => {
+  const query = encodeURIComponent(title)
+  window.open(`https://www.ptt.cc/bbs/movie/search?q=${query}`, '_blank')
+}
+
 const loadMovieDetail = async () => {
   if (movieId.value) {
     loading.value = true
@@ -189,20 +194,26 @@ useLocaleReload(async () => {
             </p>
           </div>
 
-          <div class="space-x-4 flex">
+          <div class="space-x-4 flex flex-wrap space-y-2 items-start">
             <button
               v-if="hasYouTubeTrailer"
-              class="py-2 px-4 bg-[#FF0233] text-white font-bold rounded-md hover:opacity-90 flex items-center text-lg group"
+              class="link_button group bg-[#FF0233] text-white"
               @click="openYouTubeTrailer">
               {{ $t('movie.trailer') }}
-              <span class="icon-[carbon--arrow-up-right] ml-1 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-500"></span>
+              <span class="link_button_icon icon-[carbon--arrow-up-right]"></span>
             </button>
             <button
               v-if="hasImdbId"
-              class="py-2 px-4 bg-[#FEC400] text-black font-bold rounded-md hover:opacity-90 flex items-center text-lg group"
+              class="link_button group bg-[#FEC400] text-black"
               @click="openImdb">
               IMDb
-              <span class="icon-[carbon--arrow-up-right] ml-1 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-500"></span>
+              <span class="link_button_icon icon-[carbon--arrow-up-right]"></span>
+            </button>
+            <button
+              class="link_button group bg-gray-400 text-black"
+              @click="openPttMovieSearch(movie.title)">
+              PTT
+              <span class="link_button_icon icon-[carbon--arrow-up-right]"></span>
             </button>
           </div>
         </div>
@@ -217,3 +228,15 @@ useLocaleReload(async () => {
       :casts="movie.casts" />
   </div>
 </template>
+
+<style scoped>
+  @reference "tailwindcss";
+
+  .link_button {
+    @apply py-2 px-4 font-bold rounded-md hover:opacity-90 flex items-center text-lg;
+  }
+
+  .link_button_icon {
+    @apply ml-1 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-500;
+  }
+</style>
