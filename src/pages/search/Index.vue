@@ -5,6 +5,8 @@ defineOptions({
   name: pageNameMap.search
 })
 
+const route = useRoute()
+const router = useRouter()
 const searchInput = useTemplateRef('searchInput')
 useFocus(searchInput, { initialValue: true })
 
@@ -21,6 +23,11 @@ const search = async (query: string) => {
 
   hasSearched.value = true
   currentQuery.value = query.trim()
+
+  if (route.query.q !== query.trim()) {
+    router.replace({ query: { q: query.trim() } })
+  }
+
   await reload(currentQuery.value)
 }
 
@@ -31,15 +38,17 @@ const loadMore = async () => {
 
 const searchResults = computed(() => data.value.results)
 
-const handleSearch = () => {
-  search(searchQuery.value)
-}
+const handleSearch = useDebounceFn(async () => {
+  await search(searchQuery.value)
+}, 500)
 
-const handleKeyPress = (event: KeyboardEvent) => {
-  if (event.key === 'Enter') {
-    handleSearch()
+onMounted(async () => {
+  const queryParam = route.query.q
+  if (queryParam && typeof queryParam === 'string') {
+    searchQuery.value = queryParam
+    await search(queryParam)
   }
-}
+})
 
 useLocaleReload(async () => {
   if (currentQuery.value) {
@@ -59,7 +68,7 @@ useLocaleReload(async () => {
             type="text"
             :placeholder="$t('common.typeMovieName')"
             class="flex-1 px-4 py-3 rounded-full border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
-            @keypress="handleKeyPress" />
+            @keyup.enter="handleSearch" />
           <button
             :disabled="!searchQuery.trim() || loading"
             class="btn_gradient_primary min-w-20 px-4 py-3 font-semibold rounded-full transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
