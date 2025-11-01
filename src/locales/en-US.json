@@ -44,5 +44,13 @@
     "buy": "Buy",
     "rent": "Rent",
     "stream": "Stream"
+  },
+  "person": {
+    "birthday": "Date of Birth",
+    "placeOfBirth": "Place of Birth",
+    "biography": "Biography",
+    "acting": "Acting",
+    "as": "as",
+    "unknown": "Unknown"
   }
 }

@@ -24,9 +24,10 @@ const castsList = computed(() => {
     class="mt-12">
     <SectionTitle :title="$t('title.casts')" />
     <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-10 gap-4 relative mt-6">
-      <div
+      <RouterLink
         v-for="actor of castsList"
         :key="actor.id"
+        :to="{ name: 'PersonDetail', params: { id: actor.id } }"
         class="text-center group cursor-pointer">
         <div class="relative mb-3">
           <TheImage
@@ -36,13 +37,13 @@ const castsList = computed(() => {
             lazy
             :error-img="placeholderProfile" />
         </div>
-        <h4 class="font-medium text-default text-sm mb-1">
+        <h4 class="font-medium text-default text-sm mb-1 group-hover:text-primary transition-colors">
           {{ actor.name }}
         </h4>
         <p class="text-xs text-gray-600">
           {{ actor.character }}
         </p>
-      </div>
+      </RouterLink>
     </div>
 
     <button

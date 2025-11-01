@@ -145,3 +145,38 @@ export interface NotFound {
 export interface MovieDiscoverQuery {
   with_genres?: number | string
 }
+
+export interface PersonCredit extends Movie {
+  character?: string
+  credit_id: string
+  order?: number
+  media_type: string
+}
+
+export interface PersonCrewCredit extends Movie {
+  credit_id: string
+  department: string
+  job: string
+  media_type: string
+}
+
+export interface PersonDetail {
+  adult: boolean
+  also_known_as: string[]
+  biography: string
+  birthday: string | null
+  deathday: string | null
+  gender: number
+  homepage: string | null
+  id: number
+  imdb_id: string | null
+  known_for_department: string
+  name: string
+  place_of_birth: string | null
+  popularity: number
+  profile_path: string | null
+  combined_credits: {
+    cast: PersonCredit[]
+    crew: PersonCrewCredit[]
+  }
+}

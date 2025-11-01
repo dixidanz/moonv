@@ -40,6 +40,12 @@ const router = createRouter({
       meta: { keepAlive: false }
     },
     {
+      path: '/person/:id',
+      name: 'PersonDetail',
+      component: () => import('@/pages/person/Index.vue'),
+      meta: { keepAlive: false }
+    },
+    {
       path: '/now-playing',
       name: 'now-playing',
       component: () => import('@/pages/now-playing/Index.vue'),

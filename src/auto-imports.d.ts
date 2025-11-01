@@ -51,6 +51,7 @@ declare global {
   const getMovieTopRate: typeof import('./api/movie')['getMovieTopRate']
   const getMovieTrending: typeof import('./api/movie')['getMovieTrending']
   const getNowPlaying: typeof import('./api/movie')['getNowPlaying']
+  const getPersonDetail: typeof import('./api/movie')['getPersonDetail']
   const getUpcoming: typeof import('./api/movie')['getUpcoming']
   const h: typeof import('vue')['h']
   const ignorableWatch: typeof import('@vueuse/core')['ignorableWatch']

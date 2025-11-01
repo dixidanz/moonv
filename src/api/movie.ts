@@ -1,4 +1,4 @@
-import type { MovieDetail, MovieList, TimeWindow, Collection, NotFound, MovieDiscoverQuery, Genre } from '@/types'
+import type { MovieDetail, MovieList, TimeWindow, Collection, NotFound, MovieDiscoverQuery, Genre, PersonDetail } from '@/types'
 import request from '@/utils/request'
 
 const getQuery = () => {
@@ -143,5 +143,22 @@ export const getMovieGenre = async (): Promise<Record<'genres', Genre[]>> => {
     })
   } catch (error) {
     return { genres: [] }
+  }
+}
+
+export const getPersonDetail = async (personId: number): Promise<PersonDetail | NotFound> => {
+  try {
+    return await request.get(`/person/${personId}`, {
+      params: {
+        ...getQuery(),
+        append_to_response: 'combined_credits'
+      }
+    })
+  } catch (error) {
+    return {
+      status_code: 34,
+      status_message: 'The resource you requested could not be found.',
+      success: false
+    }
   }
 }

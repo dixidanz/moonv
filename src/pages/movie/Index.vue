@@ -154,7 +154,7 @@ useLocaleReload(async () => {
                 {{ $t('movie.releaseDate') }}
               </h3>
               <p class="text-default tracking-wider">
-                {{ $d(new Date(movie.release_date), 'short') }}
+                {{ movie.release_date ? $d(new Date(movie.release_date), 'short') : $t('movie.unknown') }}
               </p>
             </div>
 
@@ -228,15 +228,3 @@ useLocaleReload(async () => {
       :casts="movie.casts" />
   </div>
 </template>
-
-<style scoped>
-  @reference "tailwindcss";
-
-  .link_button {
-    @apply py-2 px-4 font-bold rounded-md hover:opacity-90 flex items-center text-lg;
-  }
-
-  .link_button_icon {
-    @apply ml-1 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-500;
-  }
-</style>

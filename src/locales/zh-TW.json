@@ -44,5 +44,13 @@
     "buy": "購買",
     "rent": "租借",
     "stream": "串流"
+  },
+  "person": {
+    "birthday": "出生日期",
+    "placeOfBirth": "出生地",
+    "biography": "個人簡介",
+    "acting": "演出作品",
+    "as": "飾演",
+    "unknown": "未知"
   }
 }
